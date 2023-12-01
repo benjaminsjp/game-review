@@ -28,7 +28,7 @@ export default async function valgtSpill({ params }) {
     return valgtSpill;
   }
   //Lager en annen funksjon som bruker databasen til å finne lignende spill
-  async function lignendeSpillFetch(lignendeSpillId) {
+  async function lignendeSpillFetch(lignendeSpillId: any) {
     const response = await fetch("https://api.igdb.com/v4/games", {
       method: "POST",
       headers: myHeaders,
@@ -44,7 +44,7 @@ export default async function valgtSpill({ params }) {
 
   //Passer på at alle de lignende spillene blir telt med
   const lignendeSpillListe = await Promise.all(
-    lignendeSpillId.map(async (id) => await lignendeSpillFetch(id))
+    lignendeSpillId.map(async (id: any) => await lignendeSpillFetch(id))
   );
   //Flater ut arrayet slik at programmet kan tolke det
   const flattedListe = lignendeSpillListe.flat();

@@ -3,6 +3,14 @@ import { Inter } from "next/font/google";
 import igdb from "igdb-api-node";
 import { request } from "http";
 import Image from "next/image";
+import {
+  Key,
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  ReactPortal,
+  PromiseLikeOfReactNode,
+} from "react";
 
 let myHeaders = new Headers();
 myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
@@ -39,25 +47,44 @@ export default async function Result({ params }) {
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll mb-5">
             {/* Mapper søkeresultater, filtrerer ut spill uten et bilde og derreter setter inn bilder som lenker til spillets spill side */}
             {searchResult
-              .filter((game) => game.cover && game.cover.image_id) // Filtrer ut spill uten coverbilder
-              .map((game) => (
-                <div
-                  className="flex flex-col" /* Legg til nødvendig nøkkel for hvert element */
-                >
-                  <Link href={`/spill/${encodeURIComponent(game.slug)}`}>
-                    <Image
-                      src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
-                      alt=""
-                      width={300}
-                      height={450}
-                      className="rounded-sm w-50 h-full object-cover"
-                    />
-                  </Link>
-                  <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
-                    {game.name}
-                  </p>
-                </div>
-              ))}
+              .filter(
+                (game: { cover: { image_id: any } }) =>
+                  game.cover && game.cover.image_id
+              ) // Filtrer ut spill uten coverbilder
+              .map(
+                (game: {
+                  id: Key | null | undefined;
+                  slug: string | number | boolean;
+                  cover: { image_id: any };
+                  name:
+                    | string
+                    | number
+                    | boolean
+                    | ReactElement<any, string | JSXElementConstructor<any>>
+                    | Iterable<ReactNode>
+                    | ReactPortal
+                    | PromiseLikeOfReactNode
+                    | null
+                    | undefined;
+                }) => (
+                  <div
+                    className="flex flex-col" /* Legg til nødvendig nøkkel for hvert element */
+                  >
+                    <Link href={`/spill/${encodeURIComponent(game.slug)}`}>
+                      <Image
+                        src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
+                        alt=""
+                        width={300}
+                        height={0}
+                        className="rounded-sm w-50 h-full object-cover"
+                      />
+                    </Link>
+                    <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
+                      {game.name}
+                    </p>
+                  </div>
+                )
+              )}
           </div>
         </div>
       </div>

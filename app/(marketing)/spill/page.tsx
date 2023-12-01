@@ -38,23 +38,41 @@ function Spill() {
           </h1>
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll">
             {/* Mapper spillene som ble hentet fra funksjonen og displayer de i en grid */}
-            {popGame.map((game) => (
-              <div className="flex flex-col">
-                {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
-                <Link href={`/spill/${game.slug}`}>
-                  <Image
-                    src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
-                    alt=""
-                    width={300}
-                    height={0}
-                    className="rounded-sm w-50 h-full object-cover"
-                  />
-                </Link>
-                <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
-                  {game.name}
-                </p>
-              </div>
-            ))}
+            {popGame.map(
+              (game: {
+                slug: any;
+                cover: { image_id: any };
+                name:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | React.PromiseLikeOfReactNode
+                  | null
+                  | undefined;
+              }) => (
+                <div className="flex flex-col">
+                  {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
+                  <Link href={`/spill/${game.slug}`}>
+                    <Image
+                      src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
+                      alt=""
+                      width={300}
+                      height={0}
+                      className="rounded-sm w-50 h-full object-cover"
+                    />
+                  </Link>
+                  <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
+                    {game.name}
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </div>
         <div className="flex flex-col w-2/3 mt-20">
