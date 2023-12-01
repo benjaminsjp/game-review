@@ -26,9 +26,10 @@ async function gamesPopular() {
 }
 
 //Lager en variabel med spill informasjonen
-const popGame = await gamesPopular();
 
-function Spill() {
+async function Spill() {
+  const popGame = await gamesPopular();
+
   return (
     <main className="flex min-h-screen flex-col overflow-hidden">
       <div className="flex flex-col justify-center items-center">
@@ -39,8 +40,24 @@ function Spill() {
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll">
             {/* Mapper spillene som ble hentet fra funksjonen og displayer de i en grid */}
             {popGame.map(
-              ((game: { id: React.Key | null | undefined; slug: any; cover: { image_id: any; }; name: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | React.PromiseLikeOfReactNode | null | undefined; }) => (
-                <div key={game.id} className="flex flex-col">
+              (game: {
+                slug: any;
+                cover: { image_id: any };
+                name:
+                  | string
+                  | number
+                  | boolean
+                  | React.ReactElement<
+                      any,
+                      string | React.JSXElementConstructor<any>
+                    >
+                  | Iterable<React.ReactNode>
+                  | React.ReactPortal
+                  | React.PromiseLikeOfReactNode
+                  | null
+                  | undefined;
+              }) => (
+                <div key={game.slug} className="flex flex-col">
                   {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
                   <Link href={`/spill/${game.slug}`}>
                     <Image

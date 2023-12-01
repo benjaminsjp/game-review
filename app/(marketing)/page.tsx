@@ -41,20 +41,19 @@ async function games(game: string) {
   return games;
 }
 
-//Lager variabler som henter informasjon fra "games" funksjonen med spill parameter
-const Subnautica = await games("Subnautica");
-const EldenRing = await games("Elden Ring");
-const Destiny = await games("Destiny 2");
-const CS2 = await games("Counter Strike 2");
-const GOW = await games("God of war");
-const GOW2 = await games("God Of War Ragnarok");
-const swyds = await games(
-  "Shower with your dad simulator(do you still shower with your dad?)"
-);
-const ds3 = await games("Dark souls 3");
-
 //HTML
 export default async function Home() {
+  //Lager variabler som henter informasjon fra "games" funksjonen med spill parameter
+  const Subnautica = await games("Subnautica");
+  const EldenRing = await games("Elden Ring");
+  const Destiny = await games("Destiny 2");
+  const CS2 = await games("Counter Strike 2");
+  const GOW = await games("God of war");
+  const GOW2 = await games("God Of War Ragnarok");
+  const swyds = await games(
+    "Shower with your dad simulator(do you still shower with your dad?)"
+  );
+  const ds3 = await games("Dark souls 3");
   console.log();
   return (
     <main className="flex min-h-screen flex-col">
