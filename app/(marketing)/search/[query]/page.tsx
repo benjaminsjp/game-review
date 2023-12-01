@@ -21,7 +21,7 @@ myHeaders.append(
   "__cf_bm=6BG8LmW4T7qSqRR01nm9MJEIOr7sO3STPAM5o78JPZY-1700474580-0-AYKKuyn92sOHDOLETwjAXcmstZceAn5oQ4t95LGMyYixin54DtbYAEpCgMHItV2YdrdhpWQWvFSlAx1PyJ7+z1U="
 );
 
-export default async function Result({ params }) {
+export default async function Result({ params }: { params: any }) {
   //Decoder paramenter som har blitt encoded tidligere slik at programmet kan tolke mellomrom
   const decodedParams = decodeURIComponent(params.query);
   //Lager en funksjon som henter spill basert på hva bruker tastet inn i søkefeltet
