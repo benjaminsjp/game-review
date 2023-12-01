@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Inter } from "next/font/google";
 import igdb from "igdb-api-node";
 import { request } from "http";
+import Image from "next/image";
 
 const res = igdb(
   process.env.GAME_DATABASE_SECRET,
@@ -73,50 +74,61 @@ export default async function Home() {
             href={`/spill/${encodeURIComponent(Subnautica[1].slug)}`}
           >
             {/* Henter et bilde fra IGDB sin database med bilde_id fra spillet */}
-            <img
+
+            <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${Subnautica[1].cover.image_id}.jpg`}
               alt=""
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500 "
+              width={280}
+              height={0}
+              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
             />
           </Link>
           <Link
             className="place-self-center"
             href={`/spill/${encodeURIComponent(EldenRing[0].slug)}`}
           >
-            <img
+            <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${EldenRing[0].cover.image_id}.jpg`}
               alt=""
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500 "
+              width={280}
+              height={0}
+              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
             />
           </Link>
           <Link
             className="place-self-center"
             href={`/spill/${encodeURIComponent(Destiny[0].slug)}`}
           >
-            <img
+            <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${Destiny[0].cover.image_id}.jpg`}
               alt=""
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500 "
+              width={280}
+              height={0}
+              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
             />
           </Link>
           <Link
             className="place-self-center"
             href={`/spill/${encodeURIComponent(ds3[0].slug)}`}
           >
-            <img
+            <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${ds3[0].cover.image_id}.jpg`}
               alt=""
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500 "
+              width={280}
+              height={0}
+              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
             />
           </Link>
           <Link
             className="place-self-center"
             href={`/spill/spill/${encodeURIComponent(GOW[0].slug)}`}
           >
-            <img
+            <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${GOW[0].cover.image_id}.jpg`}
               alt=""
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500 "
+              width={280}
+              height={0}
+              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
             />
           </Link>
         </div>
@@ -136,10 +148,12 @@ export default async function Home() {
                 </p>
               </div>
               <div>
-                <img
+                <Image
                   src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${GOW2[0].cover.image_id}.jpg`}
                   alt=""
-                  className="rounded-lg h-full flex flex-auto w-64"
+                  width={280}
+                  height={0}
+                  className="rounded-lg w-50 h-full"
                 />
               </div>
             </div>

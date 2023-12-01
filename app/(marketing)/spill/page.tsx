@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 let myHeaders = new Headers();
 myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
@@ -38,9 +39,11 @@ function Spill() {
               <div className="flex flex-col">
                 {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
                 <Link href={`/spill/${game.slug}`}>
-                  <img
+                  <Image
                     src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                     alt=""
+                    width={300}
+                    height={0}
                     className="rounded-sm w-50 h-full object-cover"
                   />
                 </Link>

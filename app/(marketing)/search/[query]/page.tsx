@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 let myHeaders = new Headers();
 myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
@@ -42,9 +43,11 @@ export default async function Result({ params }) {
                   className="flex flex-col" /* Legg til nødvendig nøkkel for hvert element */
                 >
                   <Link href={`/spill/${encodeURIComponent(game.slug)}`}>
-                    <img
+                    <Image
                       src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                       alt=""
+                      width={300}
+                      height={450}
                       className="rounded-sm w-50 h-full object-cover"
                     />
                   </Link>

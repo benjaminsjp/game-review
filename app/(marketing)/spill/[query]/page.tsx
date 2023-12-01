@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import Image from "next/image";
 let myHeaders = new Headers();
 myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
 myHeaders.append("Authorization", `Bearer ${process.env.ACCESSTOKEN}`);
@@ -54,9 +54,11 @@ export default async function valgtSpill({ params }) {
           </h1>
           <div className="grid grid-row-1 md:grid-cols-3 grid-flow-cols gap-5 overflow-y-scroll">
             <div className="flex flex-col">
-              <img
+              <Image
                 src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${brukerValgSpill[0].cover.image_id}.jpg`}
                 alt=""
+                width={300}
+                height={0}
                 className="rounded-sm w-50 h-full object-contain"
               />
             </div>
@@ -93,9 +95,11 @@ export default async function valgtSpill({ params }) {
             {flattedListe.map((game) => (
               <div className="flex flex-col">
                 <Link href={`/${game.slug}`}>
-                  <img
+                  <Image
                     src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                     alt=""
+                    width={300}
+                    height={}
                     className="rounded-sm w-50 h-full object-cover"
                   />
                 </Link>
