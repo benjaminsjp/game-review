@@ -1,5 +1,9 @@
 import Link from "next/link";
+import { Inter } from "next/font/google";
+import igdb from "igdb-api-node";
+import { request } from "http";
 import Image from "next/image";
+
 let myHeaders = new Headers();
 myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
 myHeaders.append("Authorization", `Bearer ${process.env.ACCESSTOKEN}`);

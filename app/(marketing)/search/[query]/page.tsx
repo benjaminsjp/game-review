@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Inter } from "next/font/google";
+import igdb from "igdb-api-node";
+import { request } from "http";
 import Image from "next/image";
 
 let myHeaders = new Headers();
@@ -39,7 +42,6 @@ export default async function Result({ params }) {
               .filter((game) => game.cover && game.cover.image_id) // Filtrer ut spill uten coverbilder
               .map((game) => (
                 <div
-                  key={game.id}
                   className="flex flex-col" /* Legg til nødvendig nøkkel for hvert element */
                 >
                   <Link href={`/spill/${encodeURIComponent(game.slug)}`}>

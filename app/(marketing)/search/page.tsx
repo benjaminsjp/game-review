@@ -2,7 +2,7 @@
 
 //Lager et enkelt søkefelt som tar inn parameter, encoder parameter i tilfelle det er mellomrom, og sender bruker til den dynamiske ruten når "Enter knappen blir trykket på"
 
-export default async function SearchBar() {
+export default function SearchBar() {
   return (
     <main className="h-screen bg-white bg-opacity-40 backdrop-blur-md rounded drop-shadow-lg">
       <div className="h-1/2 flex justify-center items-center ">
