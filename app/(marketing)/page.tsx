@@ -31,7 +31,7 @@ myHeaders.append(
 //   .catch((error) => console.log("error", error));
 
 //fetcher ønsket spill
-async function games(game) {
+async function games(game: string) {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,

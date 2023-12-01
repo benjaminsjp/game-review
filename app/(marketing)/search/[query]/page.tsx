@@ -68,6 +68,7 @@ export default async function Result({ params }) {
                     | undefined;
                 }) => (
                   <div
+                    key={game.id}
                     className="flex flex-col" /* Legg til nødvendig nøkkel for hvert element */
                   >
                     <Link href={`/spill/${encodeURIComponent(game.slug)}`}>
