@@ -61,6 +61,7 @@ export default async function valgtSpill({ params }: { params: any }) {
               <Image
                 src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${brukerValgSpill[0].cover.image_id}.jpg`}
                 alt=""
+                loading="lazy"
                 width={300}
                 height={0}
                 className="rounded-sm w-50 h-full object-contain"

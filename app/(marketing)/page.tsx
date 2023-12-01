@@ -77,6 +77,7 @@ export default async function Home() {
             <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${Subnautica[1].cover.image_id}.jpg`}
               alt=""
+              loading="lazy"
               width={280}
               height={0}
               className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
@@ -89,6 +90,7 @@ export default async function Home() {
             <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${EldenRing[0].cover.image_id}.jpg`}
               alt=""
+              loading="lazy"
               width={280}
               height={0}
               className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
@@ -101,6 +103,7 @@ export default async function Home() {
             <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${Destiny[0].cover.image_id}.jpg`}
               alt=""
+              loading="lazy"
               width={280}
               height={0}
               className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
@@ -113,6 +116,7 @@ export default async function Home() {
             <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${ds3[0].cover.image_id}.jpg`}
               alt=""
+              loading="lazy"
               width={280}
               height={0}
               className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
@@ -125,6 +129,7 @@ export default async function Home() {
             <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${GOW[0].cover.image_id}.jpg`}
               alt=""
+              loading="lazy"
               width={280}
               height={0}
               className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
