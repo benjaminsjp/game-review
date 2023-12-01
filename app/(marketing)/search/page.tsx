@@ -14,7 +14,8 @@ export default function SearchBar() {
             onKeyUp={(event) =>
               event.key === "Enter" &&
               window.location.replace(
-                "/search/" + encodeURIComponent(event.target.value)
+                "/search/" +
+                  encodeURIComponent((event.target as HTMLInputElement).value)
               )
             }
           />
