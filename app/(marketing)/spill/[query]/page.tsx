@@ -99,7 +99,7 @@ export default async function valgtSpill({ params }) {
                     src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                     alt=""
                     width={300}
-                    height={}
+                    height={0}
                     className="rounded-sm w-50 h-full object-cover"
                   />
                 </Link>
