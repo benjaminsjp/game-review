@@ -98,7 +98,7 @@ export default async function valgtSpill({ params }: { params: any }) {
             {/* Mapper lignende spill og viser dem i en grid */}
             {flattedListe.map((game) => (
               <div key={game.id} className="flex flex-col">
-                <Link href={`/${game.slug}`}>
+                <Link href={`/spill/${game.slug}`}>
                   <Image
                     src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                     alt=""
