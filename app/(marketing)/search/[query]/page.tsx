@@ -29,7 +29,7 @@ export default async function Result({ params }: { params: any }) {
     const response = await fetch("https://api.igdb.com/v4/games", {
       method: "POST",
       headers: myHeaders,
-      body: `search "${decodedParams}";fields *, cover.*, platforms.*; limit 25; `,
+      body: `fields name, slug, cover.image_id; where name ~"${decodedParams}"*; sort total_rating desc; limit 20; `,
     });
     const searchedGame = await response.json();
     return searchedGame;
@@ -44,7 +44,7 @@ export default async function Result({ params }: { params: any }) {
           <h1 className="text-2xl mb-6 underline decoration-accent ">
             Resutater for {decodedParams}
           </h1>
-          <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll mb-5">
+          <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 mb-5">
             {/* Mapper søkeresultater, filtrerer ut spill uten et bilde og derreter setter inn bilder som lenker til spillets spill side */}
             {searchResult
               .filter(

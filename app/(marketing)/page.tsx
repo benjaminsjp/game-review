@@ -35,7 +35,7 @@ async function games(game: string) {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,
-    body: `search "${game}"; fields *, cover.*, platforms.*; limit 50;`,
+    body: `search "${game}"; fields name, slug, cover.image_id; limit 5;`,
   });
   const games = await response.json();
   return games;
@@ -47,12 +47,8 @@ export default async function Home() {
   const Subnautica = await games("Subnautica");
   const EldenRing = await games("Elden Ring");
   const Destiny = await games("Destiny 2");
-  const CS2 = await games("Counter Strike 2");
   const GOW = await games("God of war");
   const GOW2 = await games("God Of War Ragnarok");
-  const swyds = await games(
-    "Shower with your dad simulator(do you still shower with your dad?)"
-  );
   const ds3 = await games("Dark souls 3");
   console.log();
   return (
@@ -124,7 +120,7 @@ export default async function Home() {
           </Link>
           <Link
             className="place-self-center"
-            href={`/spill/spill/${encodeURIComponent(GOW[0].slug)}`}
+            href={`/spill/${encodeURIComponent(GOW[0].slug)}`}
           >
             <Image
               src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${GOW[0].cover.image_id}.jpg`}
@@ -157,6 +153,7 @@ export default async function Home() {
                   alt=""
                   width={280}
                   height={0}
+                  loading="lazy"
                   className="rounded-lg w-50 h-full"
                 />
               </div>

@@ -19,7 +19,7 @@ async function gamesPopular() {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,
-    body: `fields *, cover.*, platforms.*;where category = 0 & rating_count > 150; sort rating desc; limit 10; `,
+    body: `fields name, slug, cover.image_id;where category = 0 & rating_count > 150; sort rating desc; limit 10; `,
   });
   const gamesPopular = await response.json();
   return gamesPopular;
@@ -37,7 +37,7 @@ async function Spill() {
           <h1 className="text-2xl mb-6 underline decoration-accent">
             Høyest Rangert
           </h1>
-          <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll">
+          <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5">
             {/* Mapper spillene som ble hentet fra funksjonen og displayer de i en grid */}
             {popGame.map(
               (game: {

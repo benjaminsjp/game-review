@@ -22,7 +22,7 @@ export default async function valgtSpill({ params }: { params: any }) {
     const response = await fetch("https://api.igdb.com/v4/games", {
       method: "POST",
       headers: myHeaders,
-      body: `fields *, cover.*; where slug = "${decodedParams}"; limit 1;`,
+      body: `fields name, storyline, total_rating, total_rating_count, similar_games, cover.image_id; where slug = "${decodedParams}"; limit 1;`,
     });
     const valgtSpill = await response.json();
     return valgtSpill;
@@ -32,7 +32,7 @@ export default async function valgtSpill({ params }: { params: any }) {
     const response = await fetch("https://api.igdb.com/v4/games", {
       method: "POST",
       headers: myHeaders,
-      body: `fields *, cover.*; where id = ${lignendeSpillId}; limit 5;`,
+      body: `fields name, slug, cover.image_id; where id = ${lignendeSpillId}; sort total_rating desc;`,
     });
     const lignendeSpill = await response.json();
     return lignendeSpill;
@@ -103,6 +103,7 @@ export default async function valgtSpill({ params }: { params: any }) {
                   <Image
                     src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                     alt=""
+                    loading="lazy"
                     width={300}
                     height={0}
                     className="rounded-sm w-50 h-full object-cover"
