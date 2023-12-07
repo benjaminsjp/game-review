@@ -99,7 +99,7 @@ export default async function Home() {
           <h1 className="text-6xl font-semibold">{randFav[0].name}</h1>
           <div className=" w-max p-3">
             <p className="w-52">
-              10/10 "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+              10/10 Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
           </div>
         </div>
