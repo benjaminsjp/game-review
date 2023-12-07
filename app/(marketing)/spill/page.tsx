@@ -34,9 +34,7 @@ async function Spill() {
     <main className="flex min-h-screen flex-col overflow-hidden">
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col w-2/3">
-          <h1 className="text-2xl mb-6 underline decoration-accent">
-            Høyest Rangert
-          </h1>
+          <h1 className="text-2xl mb-6">Høyest Rangert</h1>
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5">
             {/* Mapper spillene som ble hentet fra funksjonen og displayer de i en grid */}
             {popGame.map(
@@ -59,17 +57,19 @@ async function Spill() {
               }) => (
                 <div key={game.slug} className="flex flex-col">
                   {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
-                  <Link href={`/spill/${game.slug}`}>
-                    <Image
-                      src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
-                      alt=""
-                      loading="lazy"
-                      width={300}
-                      height={0}
-                      className="rounded-sm w-50 h-full object-cover"
-                    />
-                  </Link>
-                  <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
+                  <div className="overflow-hidden max-w-full max-h-full rounded-md">
+                    <Link href={`/spill/${game.slug}`}>
+                      <Image
+                        src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
+                        alt=""
+                        loading="lazy"
+                        width={300}
+                        height={0}
+                        className="w-full h-full hover:scale-105 transition-all duration-300"
+                      />
+                    </Link>
+                  </div>
+                  <p className="text-Text text-xl pt-1 line-clamp-1">
                     {game.name}
                   </p>
                 </div>

@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { Inter } from "next/font/google";
-import igdb from "igdb-api-node";
-import { request } from "http";
 import Image from "next/image";
 import {
   Key,
@@ -41,9 +38,7 @@ export default async function Result({ params }: { params: any }) {
     <main>
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col w-2/3">
-          <h1 className="text-2xl mb-6 underline decoration-accent ">
-            Resutater for {decodedParams}
-          </h1>
+          <h1 className="text-2xl mb-6 ">Resutater for "{decodedParams}"</h1>
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 mb-5">
             {/* Mapper søkeresultater, filtrerer ut spill uten et bilde og derreter setter inn bilder som lenker til spillets spill side */}
             {searchResult
@@ -71,17 +66,19 @@ export default async function Result({ params }: { params: any }) {
                     key={game.id}
                     className="flex flex-col" /* Legg til nødvendig nøkkel for hvert element */
                   >
-                    <Link href={`/spill/${encodeURIComponent(game.slug)}`}>
-                      <Image
-                        src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
-                        alt=""
-                        loading="lazy"
-                        width={300}
-                        height={0}
-                        className="rounded-sm w-50 h-full object-cover"
-                      />
-                    </Link>
-                    <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
+                    <div className="overflow-hidden max-w-full max-h-full rounded-md">
+                      <Link href={`/spill/${encodeURIComponent(game.slug)}`}>
+                        <Image
+                          src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
+                          alt=""
+                          loading="lazy"
+                          width={300}
+                          height={0}
+                          className="w-full h-full hover:scale-105 transition-all duration-300"
+                        />
+                      </Link>
+                    </div>
+                    <p className="text-Text text-xl pt-1 line-clamp-1">
                       {game.name}
                     </p>
                   </div>

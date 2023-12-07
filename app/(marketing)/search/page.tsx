@@ -8,8 +8,9 @@ export default function SearchBar() {
       <div className="h-1/2 flex justify-center items-center ">
         <div className="text-left">
           <input
-            className="bord er-b-2 border-solid mb-5 sticky top-0 bg-secondary bg-opacity-40 backdrop-filter backdrop-blur-lg z-10 p-5 px-10 rounded-2xl focus:outline-none focus:border-accent/40 focus:ring-2"
+            className="border-solid border-searchbr border-2 mb-5 sticky top-0 bg-searchBg p-5 px-10 rounded-2xl focus:outline-none focus:opacity-80 "
             placeholder="Search:"
+            autoFocus
             type="text"
             onKeyUp={(event) =>
               event.key === "Enter" &&

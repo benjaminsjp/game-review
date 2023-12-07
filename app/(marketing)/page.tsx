@@ -35,7 +35,7 @@ async function games(game: string) {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,
-    body: `search "${game}"; fields name, slug, cover.image_id; limit 5;`,
+    body: `search "${game}"; fields name, slug, cover.image_id, summary,screenshots.*, artworks.*; where category = 0; limit 5;`,
   });
   const games = await response.json();
   return games;
@@ -43,121 +43,153 @@ async function games(game: string) {
 
 //HTML
 export default async function Home() {
-  //Lager variabler som henter informasjon fra "games" funksjonen med spill parameter
+  const favGames = [
+    "Subnautica",
+    "Elden Ring",
+    "Destiny 2",
+    "God of War",
+    "Dark Souls 3",
+  ];
+
   const Subnautica = await games("Subnautica");
   const EldenRing = await games("Elden Ring");
   const Destiny = await games("Destiny 2");
   const GOW = await games("God of war");
   const GOW2 = await games("God Of War Ragnarok");
   const ds3 = await games("Dark souls 3");
-  console.log();
+
+  const randFav = await games(
+    favGames[Math.floor(Math.random() * favGames.length)]
+  );
+
+  let favScreen;
+
+  switch (randFav[0].name) {
+    case "Subnautica":
+      favScreen = randFav[0].artworks[6].image_id;
+      break;
+    case "Elden Ring":
+      favScreen = randFav[0].screenshots[3].image_id;
+      break;
+    case "Destiny 2":
+      favScreen = randFav[0].artworks[1].image_id;
+      break;
+    case "God of War":
+      favScreen = randFav[0].screenshots[2].image_id;
+      break;
+    case "Dark Souls 3":
+      favScreen = randFav[0].artworks[5].image_id;
+      break;
+    default:
+      favScreen = randFav[0].artworks[0].image_id;
+  }
+
   return (
-    <main className="flex min-h-screen flex-col">
+    <main className="flex min-h-screen flex-col -mt-20">
+      <div className="w-screen h-screen relative mb-10">
+        <Image
+          src={`https://images.igdb.com/igdb/image/upload/t_1080p/${favScreen}.jpg`}
+          alt={randFav[0].name}
+          loading="lazy"
+          width={1920}
+          height={1080}
+          className="h-[100vh] object-cover"
+        />
+        <div className="absolute top-36 left-20">
+          <h1 className="text-6xl font-semibold">{randFav[0].name}</h1>
+          <div className=" w-max p-3">
+            <p className="w-52">
+              10/10 "Lorem ipsum dolor sit amet consectetur adipisicing elit."
+            </p>
+          </div>
+        </div>
+      </div>
       {/* Header */}
-      <header className="flex justify-center sticky">
-        <h1 className="text-3xl text-Text underline decoration-accent">
+      <header className="flex ">
+        <h1 className="text-3xl text-Text decoration-accent ml-20">
           Mine favoritter
         </h1>
       </header>
 
       <div>
-        <div className="grid grid-cols-2 md:grid-cols-5 grid-flow-row  p-3 mt-10">
+        <div className="grid grid-cols-2 md:grid-cols-5 grid-flow-row  p-3 mt-2 mx-16 gap-16 mb-60">
           {/* Bruker Link funksjonen til Next.js som et anchor tag som skal sende bruker til en egen side for spillet de trykket på */}
-          <Link
-            className="place-self-center"
-            //encodeURIComponent bruker jeg for at programmet kan tolke mellomrom i spill navnet
-            href={`/spill/${encodeURIComponent(Subnautica[1].slug)}`}
-          >
-            {/* Henter et bilde fra IGDB sin database med bilde_id fra spillet */}
-
-            <Image
-              src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${Subnautica[1].cover.image_id}.jpg`}
-              alt=""
-              loading="lazy"
-              width={280}
-              height={0}
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
-            />
-          </Link>
-          <Link
-            className="place-self-center"
-            href={`/spill/${encodeURIComponent(EldenRing[0].slug)}`}
-          >
-            <Image
-              src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${EldenRing[0].cover.image_id}.jpg`}
-              alt=""
-              loading="lazy"
-              width={280}
-              height={0}
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
-            />
-          </Link>
-          <Link
-            className="place-self-center"
-            href={`/spill/${encodeURIComponent(Destiny[0].slug)}`}
-          >
-            <Image
-              src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${Destiny[0].cover.image_id}.jpg`}
-              alt=""
-              loading="lazy"
-              width={280}
-              height={0}
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
-            />
-          </Link>
-          <Link
-            className="place-self-center"
-            href={`/spill/${encodeURIComponent(ds3[0].slug)}`}
-          >
-            <Image
-              src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${ds3[0].cover.image_id}.jpg`}
-              alt=""
-              loading="lazy"
-              width={280}
-              height={0}
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
-            />
-          </Link>
-          <Link
-            className="place-self-center"
-            href={`/spill/${encodeURIComponent(GOW[0].slug)}`}
-          >
-            <Image
-              src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${GOW[0].cover.image_id}.jpg`}
-              alt=""
-              loading="lazy"
-              width={280}
-              height={0}
-              className="rounded-sm w-50 h-full hover:scale-110 transition-all duration-500"
-            />
-          </Link>
-        </div>
-
-        <div className="mx-20 mt-10 bg-secondary/30 rounded-3xl">
-          <div className="px-20 pt-10">
-            <div className="flex p-5 justify-center mb-5">
-              <div>
-                <h1 className="text-3xl pb-2 underline decoration-accent">
-                  Latest Review
-                </h1>
-                <p className="text-lg flex flex-auto w-96">
-                  Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatem aspernatur placeat vel tenetur. Cum nesciunt fugit
-                  inventore magni, nemo soluta error neque ab corporis enim
-                  mollitia repellat corrupti. Aperiam, voluptatibus.
-                </p>
-              </div>
-              <div>
-                <Image
-                  src={`https://images.igdb.com/igdb/image/upload/t_cover_big/${GOW2[0].cover.image_id}.jpg`}
-                  alt=""
-                  width={280}
-                  height={0}
-                  loading="lazy"
-                  className="rounded-lg w-50 h-full"
-                />
-              </div>
-            </div>
+          <div className="overflow-hidden max-w-12/12 max-h-12/12 rounded-md">
+            <Link
+              className=""
+              //encodeURIComponent bruker jeg for at programmet kan tolke mellomrom i spill navnet
+              href={`/spill/${encodeURIComponent(Subnautica[0].slug)}`}
+            >
+              {/* Henter et bilde fra IGDB sin database med bilde_id fra spillet */}
+              <Image
+                src={`https://images.igdb.com/igdb/image/upload/t_1080p/${Subnautica[0].cover.image_id}.jpg`}
+                alt=""
+                loading="lazy"
+                width={200}
+                height={200}
+                className=" w-full h-full hover:scale-110 transition-all duration-500"
+              />
+            </Link>
+          </div>
+          <div className="overflow-hidden max-w-12/12 max-h-12/12 rounded-md">
+            <Link
+              className=""
+              href={`/spill/${encodeURIComponent(EldenRing[0].slug)}`}
+            >
+              <Image
+                src={`https://images.igdb.com/igdb/image/upload/t_1080p/${EldenRing[0].cover.image_id}.jpg`}
+                alt=""
+                loading="lazy"
+                width={200}
+                height={200}
+                className=" w-full h-full hover:scale-110 transition-all duration-500"
+              />
+            </Link>
+          </div>
+          <div className="overflow-hidden max-w-12/12 max-h-12/12 rounded-md">
+            <Link
+              className=""
+              href={`/spill/${encodeURIComponent(Destiny[0].slug)}`}
+            >
+              <Image
+                src={`https://images.igdb.com/igdb/image/upload/t_1080p/${Destiny[0].cover.image_id}.jpg`}
+                alt=""
+                loading="lazy"
+                width={200}
+                height={0}
+                className=" w-full h-full hover:scale-110 transition-all duration-500"
+              />
+            </Link>
+          </div>
+          <div className="overflow-hidden max-w-12/12 max-h-12/12 rounded-md">
+            <Link
+              className="place-self-center"
+              href={`/spill/${encodeURIComponent(ds3[0].slug)}`}
+            >
+              <Image
+                src={`https://images.igdb.com/igdb/image/upload/t_1080p/${ds3[0].cover.image_id}.jpg`}
+                alt=""
+                loading="lazy"
+                width={200}
+                height={0}
+                className=" w-full h-full hover:scale-110 transition-all duration-500"
+              />
+            </Link>
+          </div>
+          <div className="overflow-hidden max-w-12/12 max-h-12/12 rounded-md">
+            <Link
+              className="place-self-center"
+              href={`/spill/${encodeURIComponent(GOW[0].slug)}`}
+            >
+              <Image
+                src={`https://images.igdb.com/igdb/image/upload/t_1080p/${GOW[0].cover.image_id}.jpg`}
+                alt=""
+                loading="lazy"
+                width={200}
+                height={0}
+                className=" w-full h-full hover:scale-110 transition-all duration-500"
+              />
+            </Link>
           </div>
         </div>
       </div>

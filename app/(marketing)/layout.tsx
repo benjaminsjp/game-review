@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Work_Sans } from "next/font/google";
 import "../globals.css";
 
 import Link from "next/link";
 
-const inter = Inter({ subsets: ["latin"] });
+const workSans = Work_Sans({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const links = [
-  { href: "/", label: "Home" },
+  { href: "/", label: "Hjem" },
   { href: "/spill", label: "Spill" },
   { href: "/search", label: "Søk" },
 ];
@@ -23,8 +23,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className="bg-background text-Text">
+      <body className={workSans.className}>
         <nav className="text-xl border-b-2 border-solid border-secondary/20 mb-5 sticky top-0 bg-background bg-opacity-60 backdrop-filter backdrop-blur-lg z-10">
           <ul className="flex">
             {links.map((link) => (

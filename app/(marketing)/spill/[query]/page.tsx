@@ -22,7 +22,7 @@ export default async function valgtSpill({ params }: { params: any }) {
     const response = await fetch("https://api.igdb.com/v4/games", {
       method: "POST",
       headers: myHeaders,
-      body: `fields name, storyline, total_rating, total_rating_count, similar_games, cover.image_id; where slug = "${decodedParams}"; limit 1;`,
+      body: `fields name, summary, total_rating, total_rating_count, similar_games, cover.image_id; where slug = "${decodedParams}"; limit 1;`,
     });
     const valgtSpill = await response.json();
     return valgtSpill;
@@ -53,9 +53,7 @@ export default async function valgtSpill({ params }: { params: any }) {
     <main className="bg-white bg-opacity-40 backdrop-blur-md rounded drop-shadow-lg">
       <div className="flex flex-col justify-center items-center pb-10">
         <div className="flex flex-col w-2/3">
-          <h1 className="text-2xl mb-6 underline decoration-accent">
-            {brukerValgSpill[0].name}
-          </h1>
+          <h1 className="text-2xl mb-6">{brukerValgSpill[0].name}</h1>
           <div className="grid grid-row-1 md:grid-cols-3 grid-flow-cols gap-5 overflow-y-scroll">
             <div className="flex flex-col">
               <Image
@@ -68,21 +66,15 @@ export default async function valgtSpill({ params }: { params: any }) {
               />
             </div>
             <div className="flex flex-col">
-              <h1 className="text-2xl mb-6 underline decoration-accent">
-                Story
-              </h1>
-              <p>{brukerValgSpill[0].storyline}</p>
+              <h1 className="text-2xl mb-6">Beskrivelse</h1>
+              <p>{brukerValgSpill[0].summary}</p>
             </div>
             <div className="flex flex-col">
-              <h1 className="text-2xl mb-6 underline decoration-accent">
-                Rating
-              </h1>
+              <h1 className="text-2xl mb-6 ">Rating</h1>
               {/* Runder vurderingen på spillet til et heltall så det ikke er noen desimaler */}
               <p>Score: {Math.floor(brukerValgSpill[0].total_rating)} / 100</p>
               <p>Antall: {brukerValgSpill[0].total_rating_count}</p>
-              <h1 className="text-2xl mt-5 mb-6 underline decoration-accent">
-                Min mening
-              </h1>
+              <h1 className="text-2xl mt-5 mb-6">Min mening</h1>
               <p>90 / 100</p>
               <p className="pt-2">
                 Jeg synes at dette spillet har en bra fortelling, og et
@@ -92,24 +84,24 @@ export default async function valgtSpill({ params }: { params: any }) {
           </div>
         </div>
         <div className="flex flex-col w-2/3 mt-20">
-          <h1 className="text-2xl mb-6 underline decoration-accent">
-            Lignende spill
-          </h1>
+          <h1 className="text-2xl mb-6">Lignende spill</h1>
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll">
             {/* Mapper lignende spill og viser dem i en grid */}
             {flattedListe.map((game) => (
               <div key={game.id} className="flex flex-col">
-                <Link href={`/spill/${game.slug}`}>
-                  <Image
-                    src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
-                    alt=""
-                    loading="lazy"
-                    width={300}
-                    height={0}
-                    className="rounded-sm w-50 h-full object-cover"
-                  />
-                </Link>
-                <p className="text-Text text-xl p-2 underline decoration-accent line-clamp-1">
+                <div className="overflow-hidden max-w-full max-h-full rounded-md">
+                  <Link href={`/spill/${game.slug}`}>
+                    <Image
+                      src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
+                      alt=""
+                      loading="lazy"
+                      width={300}
+                      height={0}
+                      className="w-full h-full hover:scale-105 transition-all duration-300"
+                    />
+                  </Link>
+                </div>
+                <p className="text-Text text-xl pt-1 line-clamp-1">
                   {game.name}
                 </p>
               </div>

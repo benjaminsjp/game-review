@@ -4,16 +4,11 @@
 
 :root {
   --foreground-rgb: 213, 238, 252;
-  --background-start-rgb: 1, 10, 14;
-  --background-end-rgb: 5, 45, 66;
+  --background-start-rgb: 11, 13, 30;
+  --background-end-rgb: 85, 46, 127;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.filter-white {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%)
+    hue-rotate(45deg) brightness(102%) contrast(101%);
 }

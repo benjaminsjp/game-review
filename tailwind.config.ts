@@ -10,12 +10,14 @@ const config: Config = {
     colors: {
         transparent: 'transparent',
         current: 'currentColor',
-        'Text': '#D5EEFC',
-        'background': '#010A0E',
-        'primary': '#129AE2',
-        'secondary': '#052D42',
-        'accent': '#26A8ED',
-        'white': 'rgb (255, 255, 255)'
+        'Text': '#dde5f0',
+        'background': '#080b10',
+        'primary': '#a0b4d4',
+        'secondary': '#683574',
+        'accent': '#b965ac',
+        'white': 'rgb (255, 255, 255)',
+        'searchBg': 'hsl(269, 47%, 34%, 20%)',
+        'searchbr': 'hsl(269, 47%, 34%, 30%)'
       },
   },
   plugins: [
