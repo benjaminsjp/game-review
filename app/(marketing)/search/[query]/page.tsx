@@ -38,7 +38,7 @@ export default async function Result({ params }: { params: any }) {
     <main>
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col w-2/3">
-          <h1 className="text-2xl mb-6 ">Resutater for "{decodedParams}"</h1>
+          <h1 className="text-2xl mb-6 ">Resutater for {decodedParams}</h1>
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 mb-5">
             {/* Mapper søkeresultater, filtrerer ut spill uten et bilde og derreter setter inn bilder som lenker til spillets spill side */}
             {searchResult
