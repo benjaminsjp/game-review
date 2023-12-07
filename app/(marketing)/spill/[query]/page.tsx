@@ -32,7 +32,7 @@ export default async function valgtSpill({ params }: { params: any }) {
     const response = await fetch("https://api.igdb.com/v4/games", {
       method: "POST",
       headers: myHeaders,
-      body: `fields name, slug, cover.image_id; where id = ${lignendeSpillId}; sort total_rating desc;`,
+      body: `fields name, slug, cover.image_id; where id = ${lignendeSpillId};`,
     });
     const lignendeSpill = await response.json();
     return lignendeSpill;

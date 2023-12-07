@@ -88,7 +88,7 @@ export default async function Home() {
     <main className="flex min-h-screen flex-col -mt-20">
       <div className="w-screen h-screen relative mb-10">
         <Image
-          src={`https://images.igdb.com/igdb/image/upload/t_1080p/${favScreen}.jpg`}
+          src={`https://images.igdb.com/igdb/image/upload/t_1080p/${favScreen}.jpg?${Math.random()}`}
           alt={randFav[0].name}
           loading="lazy"
           width={1920}
