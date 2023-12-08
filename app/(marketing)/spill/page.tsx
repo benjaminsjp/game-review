@@ -19,7 +19,7 @@ async function gamesPopular() {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,
-    body: `fields name, slug, cover.image_id;where category = 0 & rating_count > 150; sort rating desc; limit 10; `,
+    body: `fields name, slug, cover.image_id;where category = 0 & rating_count > 150; sort rating desc; limit 12; `,
   });
   const gamesPopular = await response.json();
   return gamesPopular;
@@ -35,7 +35,7 @@ async function Spill() {
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col w-2/3">
           <h1 className="text-2xl mb-6">Høyest Rangert</h1>
-          <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5">
+          <div className="grid grid-row-1 md:grid-cols-12 overflow-x-scroll grid-flow-cols scroll-smooth snap-mandatory gap-56 snap-x">
             {/* Mapper spillene som ble hentet fra funksjonen og displayer de i en grid */}
             {popGame.map(
               (game: {
@@ -57,15 +57,15 @@ async function Spill() {
               }) => (
                 <div key={game.slug} className="flex flex-col">
                   {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
-                  <div className="overflow-hidden max-w-full max-h-full rounded-md">
+                  <div className="overflow-hidden w-52 h-72 rounded-md snap-always snap-end">
                     <Link href={`/spill/${game.slug}`}>
                       <Image
                         src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                         alt=""
                         loading="lazy"
-                        width={300}
-                        height={0}
-                        className="w-full h-full hover:scale-105 transition-all duration-300"
+                        width={1080}
+                        height={1920}
+                        className="w-52 h-72 hover:scale-105 transition-all duration-300"
                       />
                     </Link>
                   </div>
@@ -79,7 +79,7 @@ async function Spill() {
         </div>
         <div className="flex flex-col w-2/3 mt-20">
           <h1 className="text-2xl mb-6">Exempel</h1>
-          <div className="grid grid-rows-2 grid-cols-5 gap-20 overflow-x-scroll">
+          <div className="grid grid-rows-2 grid-cols-5 gap-20">
             <div className="bg-Text w-52 h-72"></div>
             <div className="bg-Text w-52 h-72"></div>
             <div className="bg-Text w-52 h-72"></div>

@@ -85,10 +85,10 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col -mt-20">
+    <main className="flex min-h-screen flex-col -mt-20 overflow-hidden">
       <div className="w-screen h-screen relative mb-10">
         <Image
-          src={`https://images.igdb.com/igdb/image/upload/t_1080p/${favScreen}.jpg?${Math.random()}`}
+          src={`https://images.igdb.com/igdb/image/upload/t_1080p/${favScreen}.jpg?`}
           alt={randFav[0].name}
           loading="lazy"
           width={1920}
@@ -99,7 +99,8 @@ export default async function Home() {
           <h1 className="text-6xl font-semibold">{randFav[0].name}</h1>
           <div className=" w-max p-3">
             <p className="w-52">
-              10/10 Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              10/10{" "}
+              {'"Lorem ipsum dolor sit amet consectetur adipisicing elit."'}
             </p>
           </div>
         </div>

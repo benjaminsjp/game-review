@@ -11,7 +11,7 @@ export default function SearchBar() {
             className="border-solid border-searchbr border-2 mb-5 sticky top-0 bg-searchBg p-5 px-10 rounded-2xl focus:outline-none focus:opacity-80 "
             placeholder="Search:"
             autoFocus
-            type="text"
+            type="search"
             onKeyUp={(event) =>
               event.key === "Enter" &&
               window.location.replace(
