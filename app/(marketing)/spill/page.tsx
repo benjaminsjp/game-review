@@ -19,7 +19,7 @@ async function gamesPopular() {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,
-    body: `fields name, slug, cover.image_id;where category = 0 & rating_count > 150; sort rating desc; limit 12; `,
+    body: `fields slug, cover.image_id;where category = 0 & rating_count > 150; sort rating desc; limit 12; `,
   });
   const gamesPopular = await response.json();
   return gamesPopular;
@@ -65,13 +65,10 @@ async function Spill() {
                         loading="lazy"
                         width={1080}
                         height={1920}
-                        className="w-52 h-72 hover:scale-105 transition-all duration-300"
+                        className="w-52 h-72 hover:scale-105 transition-all duration-300 pb-3"
                       />
                     </Link>
                   </div>
-                  <p className="text-Text text-xl pt-1 line-clamp-1">
-                    {game.name}
-                  </p>
                 </div>
               )
             )}

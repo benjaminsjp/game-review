@@ -84,7 +84,7 @@ export default async function valgtSpill({ params }: { params: any }) {
           </div>
         </div>
         <div className="flex flex-col w-2/3 mt-20">
-          <h1 className="text-2xl mb-6">Lignende spill</h1>
+          <h1 className="text-2xl mb-6">Spill som ligner på dette</h1>
           <div className="grid grid-row-1 md:grid-cols-5 grid-flow-cols gap-5 overflow-x-scroll">
             {/* Mapper lignende spill og viser dem i en grid */}
             {flattedListe.map((game) => (
@@ -95,8 +95,8 @@ export default async function valgtSpill({ params }: { params: any }) {
                       src={`https://images.igdb.com/igdb/image/upload/t_cover_big_2x/${game.cover.image_id}.jpg`}
                       alt=""
                       loading="lazy"
-                      width={300}
-                      height={0}
+                      width={1080}
+                      height={1920}
                       className="w-full h-full hover:scale-105 transition-all duration-300"
                     />
                   </Link>

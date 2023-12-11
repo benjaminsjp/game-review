@@ -35,7 +35,7 @@ async function games(game: string) {
   const response = await fetch("https://api.igdb.com/v4/games", {
     method: "POST",
     headers: myHeaders,
-    body: `search "${game}"; fields name, slug, cover.image_id, summary,screenshots.*, artworks.*; where category = 0; limit 5;`,
+    body: `search "${game}"; fields name, slug, category, cover.image_id, summary,screenshots.*, artworks.*; where category = 0; limit 5;`,
   });
   const games = await response.json();
   return games;
@@ -61,6 +61,7 @@ export default async function Home() {
   const randFav = await games(
     favGames[Math.floor(Math.random() * favGames.length)]
   );
+  console.log(EldenRing[0].category);
 
   let favScreen;
 
@@ -71,15 +72,15 @@ export default async function Home() {
     case "Elden Ring":
       favScreen = randFav[0].screenshots[3].image_id;
       break;
-    case "Destiny 2":
-      favScreen = randFav[0].artworks[1].image_id;
-      break;
-    case "God of War":
-      favScreen = randFav[0].screenshots[2].image_id;
-      break;
-    case "Dark Souls 3":
-      favScreen = randFav[0].artworks[5].image_id;
-      break;
+    // case "Destiny 2":
+    //   favScreen = randFav[0].artworks[1].image_id;
+    //   break;
+    // case "God of War":
+    //   favScreen = randFav[0].screenshots[2].image_id;
+    //   break;
+    // case "Dark Souls 3":
+    //   favScreen = randFav[0].artworks[5].image_id;
+    //   break;
     default:
       favScreen = randFav[0].artworks[0].image_id;
   }
@@ -112,8 +113,9 @@ export default async function Home() {
         </h1>
       </header>
 
+      {/* Mine favorittspill grid */}
       <div>
-        <div className="grid grid-cols-2 md:grid-cols-5 grid-flow-row  p-3 mt-2 mx-16 gap-16 mb-60">
+        <div className="grid grid-cols-2 md:grid-cols-5 grid-flow-row  p-3 mt-2 mx-16 gap-6 mb-60">
           {/* Bruker Link funksjonen til Next.js som et anchor tag som skal sende bruker til en egen side for spillet de trykket på */}
           <div className="overflow-hidden max-w-12/12 max-h-12/12 rounded-md">
             <Link
