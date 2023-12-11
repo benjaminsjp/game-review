@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Work_Sans } from "next/font/google";
 import "../globals.css";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 import Link from "next/link";
 
@@ -40,6 +41,7 @@ export default function RootLayout({
         </nav>
 
         {children}
+        <Analytics />
       </body>
     </html>
   );
