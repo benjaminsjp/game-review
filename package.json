@@ -16,6 +16,7 @@
     "apicalypse": "^0.2.0",
     "igdb-api-node": "^5.0.2",
     "next": "14.0.2",
+    "plaiceholder": "^3.0.0",
     "react": "^18",
     "react-dom": "^18"
   },

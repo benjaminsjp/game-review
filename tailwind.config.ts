@@ -16,8 +16,8 @@ const config: Config = {
         'secondary': '#683574',
         'accent': '#b965ac',
         'white': 'rgb (255, 255, 255)',
-        'searchBg': 'hsl(269, 47%, 34%, 20%)',
-        'searchbr': 'hsl(269, 47%, 34%, 30%)'
+        'searchBg': 'hsl(269, 47%, 34%, 40%)',
+        'searchbr': 'hsl(269, 47%, 34%, 50%)'
       },
   },
   plugins: [

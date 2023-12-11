@@ -38,23 +38,7 @@ async function Spill() {
           <div className="grid grid-row-1 md:grid-cols-12 overflow-x-scroll grid-flow-cols scroll-smooth snap-mandatory gap-56 snap-x">
             {/* Mapper spillene som ble hentet fra funksjonen og displayer de i en grid */}
             {popGame.map(
-              (game: {
-                slug: any;
-                cover: { image_id: any };
-                name:
-                  | string
-                  | number
-                  | boolean
-                  | React.ReactElement<
-                      any,
-                      string | React.JSXElementConstructor<any>
-                    >
-                  | Iterable<React.ReactNode>
-                  | React.ReactPortal
-                  | React.PromiseLikeOfReactNode
-                  | null
-                  | undefined;
-              }) => (
+              (game: { slug: any; cover: { image_id: any }; name: string }) => (
                 <div key={game.slug} className="flex flex-col">
                   {/* Linker bildene til en dynamisk side som viser rating, story og annet. Jeg bruker slug som parameter slik at programmet ikke finner duplikat av spill */}
                   <div className="overflow-hidden w-52 h-72 rounded-md snap-always snap-end">

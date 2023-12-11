@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import igdb from "igdb-api-node";
 import { request } from "http";
 import Image from "next/image";
+import type { Metadata } from "next";
 
 const res = igdb(
   process.env.GAME_DATABASE_SECRET,
@@ -41,6 +42,11 @@ async function games(game: string) {
   return games;
 }
 
+export const metadata: Metadata = {
+  title: "Game Review",
+  description: "Laget med kjærlighet, av Benjamin Pedersen",
+};
+
 //HTML
 export default async function Home() {
   const favGames = [
@@ -72,15 +78,15 @@ export default async function Home() {
     case "Elden Ring":
       favScreen = randFav[0].screenshots[3].image_id;
       break;
-    // case "Destiny 2":
-    //   favScreen = randFav[0].artworks[1].image_id;
-    //   break;
-    // case "God of War":
-    //   favScreen = randFav[0].screenshots[2].image_id;
-    //   break;
-    // case "Dark Souls 3":
-    //   favScreen = randFav[0].artworks[5].image_id;
-    //   break;
+    case "Destiny 2":
+      favScreen = randFav[0].artworks[1].image_id;
+      break;
+    case "God of War":
+      favScreen = randFav[0].screenshots[2].image_id;
+      break;
+    case "Dark Souls 3":
+      favScreen = randFav[0].artworks[5].image_id;
+      break;
     default:
       favScreen = randFav[0].artworks[0].image_id;
   }
