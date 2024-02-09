@@ -3,9 +3,6 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 213, 238, 252;
-  --background-start-rgb: 11, 13, 30;
-  --background-end-rgb: 85, 46, 127;
   --scrollbar: #080b10;
   --scrollbar-bg: hsl(269, 47%, 34%, 30%);
   --scrollbar-hover: hsl(269, 47%, 34%, 60%);
@@ -34,7 +31,6 @@
 
 /* scrollbar for firefox */
 * {
-  /* scrollbar-width: thin; */
   scrollbar-color: var(--scrollbar-bg) var(--scrollbar);
 }
 

@@ -17,8 +17,16 @@ const config: Config = {
         'accent': '#b965ac',
         'white': 'rgb (255, 255, 255)',
         'searchBg': 'hsl(269, 47%, 34%, 40%)',
-        'searchbr': 'hsl(269, 47%, 34%, 50%)'
+        'searchbr': 'hsl(269, 47%, 34%, 50%)',
+        'searchBox': 'hsl(236, 47%, 74%)',
+        'scrollButton': 'hsl(269, 47%, 34%, 30%)',
       },
+      extend: {
+      gridTemplateColumns: {
+        // Simple 16 column grid
+        '14': 'repeat(14, minmax(0, 1fr))',
+      }
+    },
   },
   plugins: [
     require('@tailwindcss/line-clamp'),

@@ -11,44 +11,43 @@ const res = igdb(
 );
 // console.log(res);
 
-let myHeaders = new Headers();
-myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
-myHeaders.append("Authorization", `Bearer ${process.env.ACCESSTOKEN}`);
-myHeaders.append("Content-Type", "text/plain");
-myHeaders.append(
-  "Cookie",
-  "__cf_bm=6BG8LmW4T7qSqRR01nm9MJEIOr7sO3STPAM5o78JPZY-1700474580-0-AYKKuyn92sOHDOLETwjAXcmstZceAn5oQ4t95LGMyYixin54DtbYAEpCgMHItV2YdrdhpWQWvFSlAx1PyJ7+z1U="
-);
+// Fetcher autentiserings nøkkel
+const accessToken = fetch(
+  `https://id.twitch.tv/oauth2/token?client_id=${process.env.GAME_DATABSE_CLIENT_ID}&client_secret=${process.env.GAME_DATABSE_SECRET}&grant_type=client_credentials`
+)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.log("error", error));
 
 //Spill queries
 
-//Fetcher autentiserings nøkkel
-
-// fetch(
-//   `https://id.twitch.tv/oauth2/token?client_id=${process.env.GAME_DATABSE_CLIENT_ID}&client_secret=${process.env.GAME_DATABSE_SECRET}&grant_type=client_credentials`
-// )
-//   .then((response) => response.text())
-//   .then((result) => console.log(result))
-//   .catch((error) => console.log("error", error));
-
 //fetcher ønsket spill
-async function games(game: string) {
-  const response = await fetch("https://api.igdb.com/v4/games", {
-    method: "POST",
-    headers: myHeaders,
-    body: `search "${game}"; fields name, slug, category, cover.image_id, summary,screenshots.*, artworks.*; where category = 0; limit 5;`,
-  });
-  const games = await response.json();
-  return games;
-}
 
 export const metadata: Metadata = {
   title: "Game Review",
   description: "Laget med kjærlighet, av Benjamin Pedersen",
 };
 
-//HTML
 export default async function Home() {
+  console.log(accessToken);
+  let myHeaders = new Headers();
+  myHeaders.append("client-id", `${process.env.GAME_DATABSE_CLIENT_ID}`);
+  myHeaders.append("Authorization", `Bearer ${process.env.ACCESSTOKEN}`);
+  myHeaders.append("Content-Type", "text/plain");
+  myHeaders.append(
+    "Cookie",
+    "__cf_bm=6BG8LmW4T7qSqRR01nm9MJEIOr7sO3STPAM5o78JPZY-1700474580-0-AYKKuyn92sOHDOLETwjAXcmstZceAn5oQ4t95LGMyYixin54DtbYAEpCgMHItV2YdrdhpWQWvFSlAx1PyJ7+z1U="
+  );
+  async function games(game: string) {
+    const response = await fetch("https://api.igdb.com/v4/games", {
+      method: "POST",
+      headers: myHeaders,
+      body: `search "${game}"; fields name, slug, category, cover.image_id, summary,screenshots.*, artworks.*; where category = 0; limit 5;`,
+    });
+    const games = await response.json();
+    return games;
+  }
+
   const favGames = [
     "Subnautica",
     "Elden Ring",
@@ -63,11 +62,11 @@ export default async function Home() {
   const GOW = await games("God of war");
   const GOW2 = await games("God Of War Ragnarok");
   const ds3 = await games("Dark souls 3");
+  const fortnite = await games("Worms W.M.D");
 
   const randFav = await games(
     favGames[Math.floor(Math.random() * favGames.length)]
   );
-  console.log(EldenRing[0].category);
 
   let favScreen;
 

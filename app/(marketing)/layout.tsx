@@ -43,21 +43,24 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-background text-Text">
       <body className={workSans.className}>
-        <nav className="text-xl border-b-2 border-solid border-secondary/20 mb-5 sticky top-0 bg-background bg-opacity-60 backdrop-filter backdrop-blur-lg z-10">
+        <nav className="text-xl border-b-1 border-solid border-secondary/20 mb-5 sticky top-0 bg-background bg-opacity-60 backdrop-filter backdrop-blur-lg z-10">
           <ul className="flex">
             {links.map((link) => (
-              <li
-                className="p-5 hover:text-primary transition-all duration-300"
-                key={link.href}
-              >
-                <Link href={link.href}>{link.label}</Link>
+              <li className="p-5 relative" key={link.href}>
+                <Link className="relative group" href={link.href}>
+                  <span className="group-hover:bg-blue-500 absolute inset-x-0 bottom-0 left-0 w-full h-0.5 bg-transparent origin-bottom-right transform scaleX-0 transition-transform duration-300 ease-out"></span>
+                  {link.label}
+                </Link>
               </li>
             ))}
             <li
               onClick={() => setModalState(true)}
-              className="p-5 hover:text-primary transition-all duration-300 cursor-pointer"
+              className="p-5 relative cursor-pointer"
             >
-              Søk
+              <p className="group hover:bg-blue-500 border-solid">
+                Søk
+                <span className="group-hover:bg-blue-500 absolute inset-x-0 bottom-0 left-0 w-full h-0.5 bg-transparent origin-bottom-right transform scaleX-0 transition-transform duration-300 ease-out"></span>
+              </p>
             </li>
           </ul>
         </nav>
@@ -67,12 +70,12 @@ export default function RootLayout({
         <SpeedInsights />
 
         {modalState && (
-          <div className="fixed top-0 w-screen h-screen bg-background/30 flex items-center justify-center">
+          <div className="fixed top-0 w-screen h-screen bg-background/50 flex items-center justify-center">
             <div
               className="w-full h-full z-0 fixed"
               onClick={() => setModalState(false)}
             ></div>
-            <div className=" border-secondary/20 border-2 mb-5 sticky top-0 p-5 px-10 rounded-2xl bg-background bg-opacity-40 backdrop-filter backdrop-blur-lg ">
+            <div className=" border-background/30 border-2 mb-72 sticky top-0 p-2 px-10 rounded-3xl bg-background bg-opacity-100 backdrop-filter backdrop-blur-md ">
               <form onSubmit={handleSearch}>
                 <input
                   type="search"
